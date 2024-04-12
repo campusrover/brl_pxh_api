@@ -1,0 +1,12 @@
+# Goal
+float32[] joint_positions
+float32 moving_time
+float32 accel_time
+bool blocking
+---
+# Result
+string log
+bool success
+---
+# Feedback
+string log

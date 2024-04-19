@@ -66,6 +66,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_action_files(
   FILES
   ConstPose.action
+  CartTraj.action
   JointRad.action
   JointGroupRads.action
   GripperPressure.action

@@ -15,9 +15,10 @@ robotic arm.
 
 ### Create a New Workspace
 
-We recommend starting with a fresh catkin workspace.
+We recommend starting with a fresh catkin workspace. In a new terminal
+window, execute:
 
-```bash
+```console
 mkdir -p ~/your_new_ws/src
 cd ~/your_new_ws
 catkin_make

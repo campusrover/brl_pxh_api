@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 import rospy
 
-from brl_pxh_client import BrlPxhClient
+from brl_pxh_api.brl_pxh_client import BrlPxhClient 
 
 class BrlPxhApiTester:
 

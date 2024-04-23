@@ -10,12 +10,11 @@ class BrlPxhApiTester:
 
     def _test_endpoints(self):
         self.api_client.brl_go_to_home_pose()
+        self.api_client.brl_set_ee_pose_components(x=0.2, z=0.1)
+        self.api_client.brl_go_to_home_pose()
         self.api_client.brl_set_single_joint_position(
                 joint_name="waist",
                 position=0.2)
-        self.api_client.brl_set_single_joint_position(
-                joint_name="waist",
-                position=-0.2)
         self.api_client.brl_set_ee_cartesian_trajectory(z=-0.1)
         self.api_client.brl_set_ee_cartesian_trajectory(x=-0.1)
         self.api_client.brl_set_ee_cartesian_trajectory(z=0.1)

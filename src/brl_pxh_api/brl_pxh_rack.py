@@ -6,18 +6,20 @@ import actionlib
 from interbotix_xs_modules.arm import InterbotixManipulatorXS
 
 from brl_pxh_api.msg import (
-        ConstPoseAction,
-        ConstPoseResult,
         CartTrajAction,
         CartTrajResult,
-        JointRadAction,
-        JointRadResult,
-        JointGroupRadsAction,
-        JointGroupRadsResult,
+        ConstPoseAction,
+        ConstPoseResult,
+        EePoseCompAction,
+        EePoseCompResult,
+        GripperMotionAction,
+        GripperMotionResult,
         GripperPressureAction,
         GripperPressureResult,
-        GripperMotionAction,
-        GripperMotionResult)
+        JointGroupRadsAction,
+        JointGroupRadsResult,
+        JointRadAction,
+        JointRadResult)
 
 sys.path.insert(0, '/home/brl/interbotix_ws/')
 
@@ -114,6 +116,28 @@ class BrlPxhRack:
         result.success = True
         self.server_close_gripper.set_succeeded(result)
 
+    def do_set_ee_pose_components(self, goal):
+        self.xs_api.arm.set_ee_pose_components(
+                x=goal.x,
+                z=goal.z,
+                roll=goal.roll,
+                pitch=goal.pitch,
+                execute=goal.execute,
+                moving_time=goal.moving_time,
+                accel_time=goal.accel_time,
+                blocking=goal.blocking
+                )
+        result = EePoseCompResult()
+        result.log = (
+                f'Tried to move gripper to the point at a '
+                f'(x: {goal.x}, z: {goal.z}) offset from the '
+                f'`px_100/base_link` frame\'s origin, with a rotation '
+                f'of (roll: {goal.roll}, pitch: {goal.pitch}) '
+                f'relative to that of the said frame, in '
+                f'{goal.moving_time} seconds.')
+        result.success = True
+        self.server_ee_pose_comp.set_succeeded(result)
+
     def _set_const_pose_result(self, const_pose, goal_movement_time):
         result = ConstPoseResult()
         result.log = (
@@ -173,6 +197,11 @@ class BrlPxhRack:
                 GripperMotionAction, 
                 self.do_close_gripper,
                 False)
+        self.server_ee_pose_comp = actionlib.SimpleActionServer(
+                'server_ee_pose_comp', 
+                EePoseCompAction, 
+                self.do_set_ee_pose_components,
+                False)
 
     def _start_servers(self):
         self.server_home_pose.start()
@@ -183,6 +212,7 @@ class BrlPxhRack:
         self.server_set_gripper_pressure.start()
         self.server_open_gripper.start()
         self.server_close_gripper.start()
+        self.server_ee_pose_comp.start()
 
 if __name__ == '__main__':
     rospy.init_node('brl_pxh_rack')

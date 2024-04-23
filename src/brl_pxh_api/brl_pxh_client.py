@@ -12,7 +12,9 @@ from brl_pxh_api.msg import (
         GripperPressureAction,
         GripperPressureGoal,
         GripperMotionAction,
-        GripperMotionGoal)
+        GripperMotionGoal,
+        EePoseCompAction,
+        EePoseCompGoal)
 
 class BrlPxhClient:
     
@@ -60,6 +62,31 @@ class BrlPxhClient:
         self._log_action_result(
                 "set_ee_cartesian_trajectory",
                 self.client_cart_traj)
+
+    def brl_set_ee_pose_components(
+            self,
+            x=0,
+            z=0,
+            roll=0,
+            pitch=0,
+            execute=True,
+            moving_time=1,
+            accel_time=1,
+            blocking=True):
+        goal = EePoseCompGoal()
+        goal.x = x
+        goal.z = z
+        goal.roll = roll
+        goal.pitch = pitch
+        goal.execute = execute
+        goal.moving_time = moving_time
+        goal.accel_time = accel_time
+        goal.blocking = blocking
+        self.client_ee_pose_comp.send_goal(goal)
+        self.client_ee_pose_comp.wait_for_result()
+        self._log_action_result(
+                "set_ee_pose_components",
+                self.client_ee_pose_comp)
 
     def brl_set_single_joint_position(
             self,
@@ -141,7 +168,7 @@ class BrlPxhClient:
         log = f'Action {action} '
         log += ('processed. Might have failed; '
                 'check log of terminal running Interbotix\'s '
-                'xsarm_control.launch file.')
+                'xsarm_control.launch file. ')
         log += f'{client.get_result().log}'
         rospy.loginfo(log)
 
@@ -170,6 +197,9 @@ class BrlPxhClient:
         self.client_close_gripper = actionlib.SimpleActionClient(
                 'server_close_gripper', 
                 GripperMotionAction)
+        self.client_ee_pose_comp = actionlib.SimpleActionClient(
+                'server_ee_pose_comp', 
+                EePoseCompAction)
 
     def _wait_for_servers(self):
         self.client_home_pose.wait_for_server()
@@ -180,4 +210,5 @@ class BrlPxhClient:
         self.client_set_gripper_pressure.wait_for_server()
         self.client_open_gripper.wait_for_server()
         self.client_close_gripper.wait_for_server()
+        self.client_ee_pose_comp.wait_for_server()
 

@@ -6,6 +6,12 @@ robotic arm.
 ---
 ## Table of Contents
 - [Installation](#installation)
+    - [Create a New Workspace](#create-a-new-workspace)
+    - [Git Clone and Build the BRL API ROS Package](
+#git-clone-and-build-the-brl-api-ros-package)
+    - [Create the Client ROS Package](#create-the-client-ros-package)
+    - [Testing Your Setup](#testing-your-setup)
+    - [Next Steps](#next-steps)
 - [What](#what)
     - [API Endpoints](#api-endpoints)
 - [Why](#why)
@@ -171,7 +177,7 @@ self.api_client.brl_close_gripper()
 ```
 
 For a full description of the BRL PX-100 API's endpoints and what they
-do, see the [API endpoints](#api-endpoints) section of this README.
+do, see the [API Endpoints](#api-endpoints) section of this README.
 
 ## What
 

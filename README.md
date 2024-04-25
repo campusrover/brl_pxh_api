@@ -12,6 +12,7 @@ robotic arm.
     - [Create the Client ROS Package](#create-the-client-ros-package)
     - [Testing Your Setup](#testing-your-setup)
     - [Next Steps](#next-steps)
+- [Simulation Mode](#simulation-mode)
 - [What](#what)
     - [API Endpoints](#api-endpoints)
 - [Why](#why)
@@ -159,7 +160,7 @@ terminal where you executed the `rosrun` command.
 ### Next Steps
 
 The `brl_api_tester.py` file is your friend. It shows you the basic
-steps of using the BRL PXH-100 API. First, you need to import the
+steps of using the BRL PX-100 API. First, you need to import the
 BrlPxhClient:
 
 ```python3
@@ -185,6 +186,39 @@ self.api_client.brl_close_gripper()
 
 For a full description of the BRL PX-100 API's endpoints and what they
 do, see the [API Endpoints](#api-endpoints) section of this README.
+
+## Simulation Mode
+
+To use the BRL PX-100 API in simulation mode, first use your favorite
+text editor to open the `brl_pxh_api.launch` file, found under the
+`launch` directory of the package. Next, navigate to the line that
+reads:
+
+```
+<arg name="use_sim" value="false" />
+```
+
+and change it to:
+
+```
+<arg name="use_sim" value="true" />
+```
+
+To test that the API is operating in simulation mode as intended,
+execute:
+
+```bash
+roslaunch brl_pxh_api brl_pxh_api.launch
+```
+
+and then, in another terminal window, enter: 
+
+```bash
+rosrun brl_pxh_api brl_api_tester
+```
+
+You should see the simulated model of the arm moving as directed by the
+`brl_api_tester` in RViz.
 
 ## What
 

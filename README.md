@@ -204,7 +204,7 @@ and change it to:
 <arg name="use_sim" value="true" />
 ```
 
-To test that the API is operating in simulation mode as intended,
+To test that the API will operate in simulation mode as intended,
 execute:
 
 ```bash

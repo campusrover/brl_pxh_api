@@ -113,7 +113,7 @@ cd ~/your_new_ws
 catkin_create_pkg your_pkg std_msgs rospy roscpp brl_pxh_api
 ```
 
-Don't forget to build your package afterwards as follows:
+and build the package with:
 
 ```bashrc
 cd ~/your_new_ws

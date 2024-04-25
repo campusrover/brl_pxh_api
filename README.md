@@ -113,6 +113,13 @@ cd ~/your_new_ws
 catkin_create_pkg your_pkg std_msgs rospy roscpp brl_pxh_api
 ```
 
+Don't forget to build your package afterwards as follows:
+
+```bashrc
+cd ~/your_new_ws
+catkin_make
+```
+
 ### Testing Your Setup
 
 ___TO-DO: Update this section after successfully connecting the PX-100

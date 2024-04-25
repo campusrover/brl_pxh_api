@@ -190,9 +190,9 @@ do, see the [API Endpoints](#api-endpoints) section of this README.
 ## Simulation Mode
 
 To use the BRL PX-100 API in simulation mode, first use your favorite
-text editor to open the `brl_pxh_api.launch` file, found under the
-`launch` directory of the package. Next, navigate to the line that
-reads:
+text editor to open the `brl_pxh_api.launch` file. You can find the
+file under the `launch` directory of the `brl_pxh_api` package. Next,
+navigate to the line that reads:
 
 ```
 <arg name="use_sim" value="false" />
@@ -217,8 +217,8 @@ and then, in another terminal window, enter:
 rosrun brl_pxh_api brl_api_tester
 ```
 
-You should see the simulated model of the arm moving as directed by the
-`brl_api_tester` in RViz.
+You should now see the simulated model of the arm moving as directed by
+the `brl_api_tester` in RViz.
 
 ## What
 

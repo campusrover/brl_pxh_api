@@ -13,10 +13,7 @@ robotic arm.
     - [Testing Your Setup](#testing-your-setup)
     - [Next Steps](#next-steps)
 - [Simulation Mode](#simulation-mode)
-- [What](#what)
-    - [API Endpoints](#api-endpoints)
-- [Why](#why)
-- [How](#how)
+- [A note on an error](#a-note-on-an-error)
 ---
 
 ## Installation
@@ -184,8 +181,8 @@ self.api_client.brl_open_gripper()
 self.api_client.brl_close_gripper()
 ```
 
-For a full description of the BRL PX-100 API's endpoints and what they
-do, see the [API Endpoints](#api-endpoints) section of this README.
+For an example that uses the Brl API more extensively, see the
+[PNP](https://github.com/campusrover/pnp) project.
 
 ## Simulation Mode
 
@@ -220,10 +217,3 @@ rosrun brl_pxh_api brl_api_tester
 You should now see the simulated model of the arm moving as directed by
 the `brl_api_tester` in RViz.
 
-## What
-
-### API Endpoints
-
-## Why
-
-## How

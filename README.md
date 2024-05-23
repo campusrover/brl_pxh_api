@@ -13,7 +13,6 @@ robotic arm.
     - [Testing Your Setup](#testing-your-setup)
     - [Next Steps](#next-steps)
 - [Simulation Mode](#simulation-mode)
-- [A note on an error](#a-note-on-an-error)
 ---
 
 ## Installation
